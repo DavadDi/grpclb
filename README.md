@@ -36,7 +36,7 @@ gRPC 使用 LoadBanlance 中的 resover 使用注册的服务信息。首次连�
 # 默认端口 2379
 $ ./etcd
 
-$ go test
+$ make test
 
 $ ETCDCTL_API=3 ./etcdctl get --prefix=true ""
 ```

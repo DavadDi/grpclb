@@ -167,14 +167,14 @@ func (r *EtcdResolver) update(evs []*clientv3.Event) {
 		addr := resolver.Address{Addr: utils.SplitPath(key, r.keyPrifix)}
 		switch ev.Type {
 		case mvccpb.PUT:
-			if !exist(r.srvAddrsList, addr) {
+			if !utils.Exist(r.srvAddrsList, addr) {
 				r.srvAddrsList = append(r.srvAddrsList, addr)
 				if !r.usedForTest {
 					r.NewAddress(r.srvAddrsList)
 				}
 			}
 		case mvccpb.DELETE:
-			if s, ok := remove(r.srvAddrsList, addr); ok {
+			if s, ok := utils.Remove(r.srvAddrsList, addr); ok {
 				r.srvAddrsList = s
 				if !r.usedForTest {
 					r.NewAddress(r.srvAddrsList)
@@ -210,25 +210,4 @@ func (r *EtcdResolver) watch() {
 			}
 		}
 	}
-}
-
-// helper function
-func exist(l []resolver.Address, addr resolver.Address) bool {
-	for i := range l {
-		if l[i].Addr == addr.Addr {
-			return true
-		}
-	}
-	return false
-}
-
-// helper function
-func remove(s []resolver.Address, addr resolver.Address) ([]resolver.Address, bool) {
-	for i := range s {
-		if s[i].Addr == addr.Addr {
-			s[i] = s[len(s)-1]
-			return s[:len(s)-1], true
-		}
-	}
-	return nil, false
 }
