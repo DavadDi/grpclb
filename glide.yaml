@@ -1,0 +1,11 @@
+package: github.com/DavadDi/grpc_etcd_service_discovery
+import:
+- package: go.etcd.io/etcd/clientv3
+- package: go.etcd.io/etcd/mvcc/mvccpb
+- package: google.golang.org/grpc/resolver
+testImport:
+- package: google.golang.org/grpc
+  version: ^1.14.0
+  subpackages:
+  - examples/helloworld/helloworld
+  - reflection
