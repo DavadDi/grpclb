@@ -1,4 +1,4 @@
-# grpc_etcd_service_discovery
+# grpclb
 
 ## 注册结构
 
@@ -23,14 +23,13 @@ gRPC Server 启动的时候调用 Register 函数进行服务相关信息注册�
 
 
 ## 服务访问
-RW
 gRPC 使用 LoadBanlance 中的 resover 使用注册的服务信息。首次连接的时候进行全量拉取，后续采用 Watcher 的方式来进行增删，为保证可靠性，设置定期拉取 Sync 的过程。
 
 通过自定义 gRPC esover 的方式，保证对于 gRPC 服务端访问时的透明性。
 
 
 
-# 测试
+## 测试
 
 ```
 # 默认端口 2379
@@ -40,3 +39,6 @@ $ make test
 
 $ ETCDCTL_API=3 ./etcdctl get --prefix=true ""
 ```
+
+## 备注
+由于 glide 管理包依赖过程中存在问题， vendor 目录部分代码经过了手工调整。
