@@ -23,10 +23,10 @@ gRPC Server 启动的时候调用 Register 函数进行服务相关信息注册�
 
 
 ## 服务访问
+RW
+gRPC 使用 LoadBanlance 中的 resover 使用注册的服务信息。首次连接的时候进行全量拉取，后续采用 Watcher 的方式来进行增删，为保证可靠性，设置定期拉取 Sync 的过程。
 
-gRPC 使用 LoadBanlance 中的 resover 使用注册的服务信息。首次连接的时候进行全量拉去，后续采用 watcher 的方式来进行增删，为保证可靠性，设置定期拉去 Sync 的过程。
-
-通过自定义 gRPC resover 的方式，保证对于 gRPC 服务端访问时的透明性。
+通过自定义 gRPC esover 的方式，保证对于 gRPC 服务端访问时的透明性。
 
 
 

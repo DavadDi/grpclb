@@ -7,8 +7,8 @@ import (
 
 	"github.com/DavadDi/grpclb/common"
 	"github.com/DavadDi/grpclb/utils"
-	"go.etcd.io/etcd/clientv3"
-	"go.etcd.io/etcd/mvcc/mvccpb"
+	"github.com/etcd-io/etcd/clientv3"
+	"github.com/etcd-io/etcd/mvcc/mvccpb"
 	"google.golang.org/grpc/resolver"
 )
 

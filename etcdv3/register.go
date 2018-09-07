@@ -8,7 +8,7 @@ import (
 
 	"github.com/DavadDi/grpclb/common"
 	"github.com/DavadDi/grpclb/utils"
-	"go.etcd.io/etcd/clientv3"
+	"github.com/etcd-io/etcd/clientv3"
 )
 
 // NewEtcdRegister return a EtcdRegister, param: etcd endpoints addrs. Just for simple use
@@ -139,6 +139,14 @@ func (r *EtcdRegister) keepAlive() {
 			if err != nil {
 				log.Printf("unregister %s failed. %s\n", r.srvInfo.Addr, err.Error())
 			}
+			// clean lease
+			ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+			defer cancel()
+			_, err = r.cli.Revoke(ctx, r.leasesID)
+			if err != nil {
+				log.Printf("Revoke lease %d for %s failed. %s\n", r.leasesID, r.srvInfo.Addr, err.Error())
+			}
+
 			return
 		case <-r.keepAliveCh:
 			// Just do nothing

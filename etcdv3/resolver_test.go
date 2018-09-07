@@ -91,7 +91,7 @@ func TestGRPCDialSignal(t *testing.T) {
 
 	c := pb.NewGreeterClient(conn)
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 100; i++ {
 		ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 		defer cancel()
 
@@ -144,7 +144,7 @@ func TestGRPCDial(t *testing.T) {
 		go newGrpcServer(t, name, version, 9094)
 	}()
 
-	for i := 0; i < 30; i++ {
+	for i := 0; i < 100; i++ {
 		ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 		defer cancel()
 

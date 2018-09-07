@@ -1,8 +1,16 @@
-package: github.com/DavadDi/grpc_etcd_service_discovery
+package: github.com/DavadDi/grpclb
 import:
-- package: go.etcd.io/etcd/clientv3
-- package: go.etcd.io/etcd/mvcc/mvccpb
-- package: google.golang.org/grpc/resolver
+- package: google.golang.org/genproto
+  repo: https://github.com/google/go-genproto.git
+- package: github.com/etcd-io/etcd
+  version: ^3.3.9
+  subpackages:
+  - clientv3
+  - mvcc/mvccpb
+- package: google.golang.org/grpc
+  version: ^1.14.0
+  subpackages:
+  - resolver
 testImport:
 - package: google.golang.org/grpc
   version: ^1.14.0
