@@ -8,7 +8,7 @@ import (
 
 	"github.com/DavadDi/grpclb/common"
 	"github.com/DavadDi/grpclb/utils"
-	"github.com/etcd-io/etcd/clientv3"
+	"go.etcd.io/etcd/clientv3"
 )
 
 // NewEtcdRegister return a EtcdRegister, param: etcd endpoints addrs. Just for simple use
@@ -149,8 +149,8 @@ func (r *EtcdRegister) keepAlive() {
 
 			return
 		case <-r.keepAliveCh:
-			// Just do nothing
-			log.Printf("recv keepalive %s, %d\n", r.srvInfo.Addr, len(r.keepAliveCh))
+			// Just do nothing, closeCh should revoke lease
+			// log.Printf("recv keepalive %s, %d\n", r.srvInfo.Addr, len(r.keepAliveCh))
 		case <-ticker.C:
 			// Timeout, no check out and just put
 			// log.Printf("register %s\n", r.srvInfo.Addr)

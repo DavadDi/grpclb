@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/DavadDi/grpclb/common"
+	pb "github.com/DavadDi/grpclb/etcdv3/helloworld"
 	"google.golang.org/grpc"
-	pb "google.golang.org/grpc/examples/helloworld/helloworld"
 	"google.golang.org/grpc/reflection"
 	"google.golang.org/grpc/resolver"
 )

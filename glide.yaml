@@ -1,19 +1,15 @@
 package: github.com/DavadDi/grpclb
 import:
-- package: google.golang.org/genproto
-  repo: https://github.com/google/go-genproto.git
-- package: github.com/etcd-io/etcd
-  version: ^3.3.9
+- package: github.com/coreos/etcd
   subpackages:
   - clientv3
   - mvcc/mvccpb
+- package: github.com/golang/protobuf
+  subpackages:
+  - proto
+- package: golang.org/x/net/context
 - package: google.golang.org/grpc
-  version: ^1.14.0
   subpackages:
   - resolver
-testImport:
-- package: google.golang.org/grpc
-  version: ^1.14.0
-  subpackages:
-  - examples/helloworld/helloworld
-  - reflection
+- package: google.golang.org/genproto
+  repo: https://github.com/google/go-genproto.git
